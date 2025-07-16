@@ -27,6 +27,19 @@ export default function Home() {
     }
     setIsMobileMenuOpen(false)
   }
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+const videoRef = useRef<HTMLVideoElement>(null)
+
+const handleVideoPlay = () => {
+  if (videoRef.current) {
+    if (isVideoPlaying) {
+      videoRef.current.pause()
+    } else {
+      videoRef.current.play()
+    }
+    setIsVideoPlaying(!isVideoPlaying)
+  }
+}
 
   const menuItems = [
     { label: "About CLAVI", href: "about" },
@@ -64,29 +77,28 @@ export default function Home() {
     { id: 3, title: "Content-Only Mode", description: "Pure text reading experience" },
     { id: 4, title: "Theme Customization", description: "Calming teal theme for relaxed reading" },
     { id: 5, title: "Dark Mode", description: "Night-friendly dark interface" },
-    { id: 6, title: "Mobile Experience", description: "Responsive design on mobile devices" },
   ]
 
   const teamMembers = [
     {
       name: "Alex Johnson",
       college: "MIT - CS2024",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/images/team/alex-johnson.jpg",
     },
     {
       name: "Sarah Chen",
       college: "Stanford - AI2024",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/images/team/sarah-chen.jpg",
     },
     {
       name: "Mike Rodriguez",
       college: "Berkeley - UX2025",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/images/team/mike-rodriguez.jpg",
     },
     {
       name: "Emily Davis",
       college: "Harvard - PM2024",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "/images/team/emily-davis.jpg",
     },
   ]
 
@@ -239,14 +251,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                 >
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-2 border-gray-300 hover:border-emerald-500 px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 bg-transparent"
-                  >
-                    <Play className="mr-2 h-5 w-5" />
-                    Watch Demo
-                  </Button>
+                
                 </motion.div>
               </motion.div>
 
@@ -264,7 +269,7 @@ export default function Home() {
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   >
                     <img
-                      src="/placeholder.svg?height=400&width=500"
+                      src="/images/clavi-hero-screenshot.png"
                       alt="CLAVI Chrome Extension Interface"
                       className="w-full h-auto rounded-lg shadow-lg"
                     />
@@ -303,7 +308,7 @@ export default function Home() {
               >
                 <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8">
                   <img
-                    src="/placeholder.svg?height=400&width=500"
+                    src="/images/clavi-about-demo.png"
                     alt="CLAVI in action"
                     className="w-full h-auto rounded-lg shadow-lg"
                   />
@@ -412,7 +417,7 @@ export default function Home() {
               >
                 <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 shadow-xl">
                   <img
-                    src="/placeholder.svg?height=400&width=500"
+                    src="/images/Summarizer.png"
                     alt="Summarized Mode"
                     className="w-full h-auto rounded-lg shadow-lg"
                   />
@@ -434,7 +439,7 @@ export default function Home() {
               >
                 <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-8 shadow-xl">
                   <img
-                    src="/placeholder.svg?height=400&width=500"
+                    src="/images/Content.png"
                     alt="Content-Only Mode"
                     className="w-full h-auto rounded-lg shadow-lg"
                   />
@@ -632,103 +637,114 @@ export default function Home() {
         </section>
 
         {/* Demo Section */}
-        <section id="demo" className="py-20 bg-gray-50" ref={demoRef}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              animate={demoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Watch{" "}
-                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                  CLAVI
-                </span>{" "}
-                in Action
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                See how CLAVI transforms overwhelming web content into ADHD-friendly reading experiences
-              </p>
-            </motion.div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                className="relative"
-                initial={{ opacity: 0, x: -50 }}
-                animate={demoInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
+        {/* Demo Section */}
+<section id="demo" className="py-20 bg-gray-50" ref={demoRef}>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      className="text-center mb-16"
+      initial={{ opacity: 0, y: 30 }}
+      animate={demoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.8 }}
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        Watch{" "}
+        <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+          CLAVI
+        </span>{" "}
+        in Action
+      </h2>
+      <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        See how CLAVI transforms overwhelming web content into ADHD-friendly reading experiences
+      </p>
+    </motion.div>
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <motion.div
+        className="relative"
+        initial={{ opacity: 0, x: -50 }}
+        animate={demoInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+      >
+        <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
+          <video
+            ref={videoRef}
+            className="w-full aspect-video object-cover"
+            poster="/images/clavi-hero-screenshot.png"
+            controls={isVideoPlaying}
+            onPlay={() => setIsVideoPlaying(true)}
+            onPause={() => setIsVideoPlaying(false)}
+            onEnded={() => setIsVideoPlaying(false)}
+          >
+            <source src="/images/clavi-video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          {!isVideoPlaying && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+              <Button
+                size="lg"
+                className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/30 rounded-full p-4"
+                onClick={handleVideoPlay}
               >
-                <div className="relative bg-black rounded-2xl overflow-hidden shadow-2xl">
-                  <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                    <Button
-                      size="lg"
-                      className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/30 rounded-full p-4"
-                    >
-                      <Play className="h-8 w-8 ml-1" />
-                    </Button>
-                  </div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <p className="text-sm opacity-80">Demo Video</p>
-                    <p className="text-xs opacity-60">2:30 duration</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="space-y-8"
-                initial={{ opacity: 0, x: 50 }}
-                animate={demoInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-              >
-                <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Before & After</h3>
-
-                  <motion.div
-                    className="mb-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={demoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ delay: 0.6, duration: 0.6 }}
-                  >
-                    <p className="text-sm text-gray-600 mb-2">Before: Overwhelming webpage</p>
-                    <div className="bg-white rounded-lg p-4 shadow-lg border">
-                      <div className="space-y-2">
-                        <div className="flex space-x-2">
-                          <div className="h-3 bg-red-300 rounded w-1/4"></div>
-                          <div className="h-3 bg-blue-300 rounded w-1/3"></div>
-                          <div className="h-3 bg-green-300 rounded w-1/4"></div>
-                        </div>
-                        <div className="h-2 bg-gray-300 rounded w-full"></div>
-                        <div className="h-2 bg-gray-300 rounded w-3/4"></div>
-                        <div className="flex space-x-2">
-                          <div className="h-8 bg-yellow-300 rounded w-1/3"></div>
-                          <div className="h-8 bg-purple-300 rounded w-1/3"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={demoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ delay: 0.8, duration: 0.6 }}
-                  >
-                    <p className="text-sm text-gray-600 mb-2">After: Clean CLAVI experience</p>
-                    <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-4 shadow-lg border">
-                      <div className="space-y-3">
-                        <div className="h-3 bg-gray-800 rounded w-3/4"></div>
-                        <div className="h-2 bg-gray-600 rounded w-full"></div>
-                        <div className="h-2 bg-gray-600 rounded w-5/6"></div>
-                        <div className="h-2 bg-gray-600 rounded w-4/5"></div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
+                <Play className="h-8 w-8 ml-1" />
+              </Button>
             </div>
+          )}
+          <div className="absolute bottom-4 left-4 text-white">
+            <p className="text-sm opacity-80">Demo Video</p>
+            <p className="text-xs opacity-60">2:30 duration</p>
           </div>
-        </section>
-
+        </div>
+      </motion.div>
+      <motion.div
+        className="space-y-8"
+        initial={{ opacity: 0, x: 50 }}
+        animate={demoInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+        transition={{ delay: 0.4, duration: 0.8 }}
+      >
+        <div>
+          <h3 className="text-xl font-semibold text-gray-900 mb-4">Before & After</h3>
+          <motion.div
+            className="mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={demoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
+            <p className="text-sm text-gray-600 mb-2">Before: Overwhelming webpage</p>
+            <div className="bg-white rounded-lg p-4 shadow-lg border">
+              <div className="space-y-2">
+                <div className="flex space-x-2">
+                  <div className="h-3 bg-red-300 rounded w-1/4"></div>
+                  <div className="h-3 bg-blue-300 rounded w-1/3"></div>
+                  <div className="h-3 bg-green-300 rounded w-1/4"></div>
+                </div>
+                <div className="h-2 bg-gray-300 rounded w-full"></div>
+                <div className="h-2 bg-gray-300 rounded w-3/4"></div>
+                <div className="flex space-x-2">
+                  <div className="h-8 bg-yellow-300 rounded w-1/3"></div>
+                  <div className="h-8 bg-purple-300 rounded w-1/3"></div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={demoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ delay: 0.8, duration: 0.6 }}
+          >
+            <p className="text-sm text-gray-600 mb-2">After: Clean CLAVI experience</p>
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-lg p-4 shadow-lg border">
+              <div className="space-y-3">
+                <div className="h-3 bg-gray-800 rounded w-3/4"></div>
+                <div className="h-2 bg-gray-600 rounded w-full"></div>
+                <div className="h-2 bg-gray-600 rounded w-5/6"></div>
+                <div className="h-2 bg-gray-600 rounded w-4/5"></div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
         {/* Screenshots Section */}
         <section id="screenshots" className="py-20 bg-white" ref={screenshotsRef}>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -753,7 +769,7 @@ export default function Home() {
               <div className="relative bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-8 shadow-2xl">
                 <div className="relative aspect-video bg-white rounded-lg shadow-lg overflow-hidden mb-6">
                   <img
-                    src={`/placeholder.svg?height=400&width=700&text=Screenshot ${currentSlide + 1}`}
+                    src={`/images/screenshot-${currentSlide + 1}.png`}
                     alt={screenshots[currentSlide].title}
                     className="w-full h-full object-cover"
                   />
