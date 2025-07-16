@@ -81,25 +81,25 @@ const handleVideoPlay = () => {
 
   const teamMembers = [
     {
-      name: "Alex Johnson",
-      college: "MIT - CS2024",
-      image: "/images/team/alex-johnson.jpg",
+      name: "Vikas Pritam",
+      college: "SRM RMP",
     },
     {
-      name: "Sarah Chen",
-      college: "Stanford - AI2024",
-      image: "/images/team/sarah-chen.jpg",
+      name: "Naveen",
+      college: "SRM RMP"
     },
     {
-      name: "Mike Rodriguez",
-      college: "Berkeley - UX2025",
-      image: "/images/team/mike-rodriguez.jpg",
+      name: "Sashank",
+      college: "SRM RM"
     },
     {
-      name: "Emily Davis",
-      college: "Harvard - PM2024",
-      image: "/images/team/emily-davis.jpg",
+      name: "Akash",
+      college: "SRM RMP"
     },
+    {
+      name:"Vinoth Anand Gani",
+      college:"SRM RMP",
+    }
   ]
 
   const nextSlide = () => {
