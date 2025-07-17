@@ -90,7 +90,7 @@ const handleVideoPlay = () => {
     },
     {
       name: "Sashank",
-      college: "SRM RM"
+      college: "SRM RMP"
     },
     {
       name: "Akash",
@@ -826,7 +826,7 @@ const handleVideoPlay = () => {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                 Meet the{" "}
                 <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                  CLAVI
+                  CodeKrafters
                 </span>{" "}
                 Team
               </h2>
